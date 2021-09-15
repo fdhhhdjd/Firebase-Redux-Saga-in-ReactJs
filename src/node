@@ -1,0 +1,14 @@
+
+        Fork(): sử dụng cơ chế non - blocking call trên function 
+        Call(): Gọi function. Nếu nó return về một promise, tạm dừng saga cho đến khi
+        promise được giải quyết 
+        Take(): tạm dừng cho đến khi nhận được action
+        Put(): Dùng để dispatch một action '
+        'akeEvery(): Theo dõi một action nào
+        đó thay đổi thì gọi một saga nào đó 
+        akeLastest() : Có nghĩa là nếu chúng
+        ta thực hiện một loạt các actions, nó sẽ chỉ thực thi và trả lại kết quảcủa của actions cuối cùng
+        yield(): Có nghĩa là chạy tuần tự khi nào trả ra kết quả mới thực thi tiếp 
+        Select(): Chạy một selector function để lấydata từ state
+
+takeLatest:Tạo ra một câu chuyện về mỗi hành động được gửi đến Cửa hàng phù hợp với mẫu. Và tự động hủy mọi tác vụ saga trước đó đã bắt đầu trước đó nếu nó vẫn đang chạy.
