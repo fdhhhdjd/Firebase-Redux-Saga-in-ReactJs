@@ -4,9 +4,7 @@ const About = () => {
   return (
     <div className="container mt-5">
       <div className="jumbotron">
-        <p className="lead">
-          This is React Contact Management System application with Routing using FireBase
-        </p>
+        <p className="lead">React Firebase Redux-Saga 💗</p>
       </div>
     </div>
   );

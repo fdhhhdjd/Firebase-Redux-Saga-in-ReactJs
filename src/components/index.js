@@ -1,23 +1,20 @@
-import React, { useEffect, useState, useContext } from "react";
-import firebaseDb from "../firebase";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getContactsStart } from "../redux/actions";
+import { deleteContactsStart, getContactsStart } from "../redux/actions";
 
 const ListRecord = () => {
+  //!get from Firebase
   const { contacts: data } = useSelector((state) => state.data);
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getContactsStart());
   }, []);
-
+  //!Delete Firebase
   const onDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this record ?")) {
-      firebaseDb.child(`contacts/${id}`).remove((err) => {
-        if (err) {
-          console.log(err);
-        }
-      });
+    if (window.confirm("Are you sure you want to delete")) {
+      dispatch(deleteContactsStart(id));
+      dispatch(getContactsStart());
     }
   };
 
@@ -51,21 +48,21 @@ const ListRecord = () => {
                       <td>{data[id].address}</td>
                       <td>
                         <Link to={`/update/${id}`}>
-                          <a className="btn text-primary">
+                          <p className="btn text-primary">
                             <i className="fas fa-pencil-alt" />
-                          </a>
+                          </p>
                         </Link>
 
-                        <a
+                        <p
                           className="btn text-danger"
                           onClick={() => onDelete(id)}
                         >
                           <i className="fas fa-trash-alt" />
-                        </a>
+                        </p>
                         <Link to={`/view/${id}`}>
-                          <a className="btn text-info">
+                          <p className="btn text-info">
                             <i className="fas fa-eye" />
-                          </a>
+                          </p>
                         </Link>
                       </td>
                     </tr>

@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import firebaseDb from "../firebase";
+import { getContactsStart, getContactsSuccess } from "../redux/actions";
 
 const View = () => {
   const currentId = useParams();
-  const [data, setData] = useState({});
+  const dispatch = useDispatch();
   const { id } = currentId;
-
-  console.log("currentId", currentId);
+  const { contacts: data } = useSelector((state) => state.data);
 
   useEffect(() => {
-    firebaseDb.child("contacts").on("value", (snapshot) => {
-      if (snapshot.val() !== null) {
-        setData({
-          ...snapshot.val(),
-        });
-      } else {
-        setData({});
-      }
-    });
-  }, [id]);
+    dispatch(getContactsStart());
+  }, []);
   return (
     <div className="container mt-5">
       {Object.keys(data).map((userId) => {
